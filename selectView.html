@@ -6,25 +6,35 @@
 </head>
 <body>
 <div id="gaofan" class="select-box-container">  
-    <div class="select-box"><span class="select-box-text">Select an Option...</span></div>
-    <div class="dropdown-box">
+    <div class="select-box collapsed"><span class="select-box-text">Select an Option...</span></div>
+    <div class="dropdown-box show">
         <div class="dropdown-search-box"><input type="text"/></div>
         <div class="dropdown-none-matching-box"><span>No matching options.</span></div>
         <div class="dropdown-list-box">
+            <div class="dropdown-select-btn-wrapper">
+                <button class="dropdown-select-btn btn all">Select all</button>
+                <button class="dropdown-select-btn btn none">Select none</button>
+            </div>
             <ul class="group-wrapper">
-                <li class="group-title">Clever</li>
-                <li class="option available">Subway</li>
-                <li class="option disabled">Cake</li>
-                <li class="option">Clever Bread</li>
-                <li class="option">Salad</li>
-                <li class="option">Mixed Rice</li>
-                <li class="option">Curry</li>
-                <li class="option">Briyani</li>
-                <li class="option">Pasta</li>
-                <li class="option">Bah Kuh Tah</li>
+                <li class="group-title">
+                    <b>Clever</b>
+                    <div>
+                        <button class="group-select-btn btn all">All</button>
+                        <button class="group-select-btn btn none">None</button>
+                    </div>
+                </li>
+                <li class="option available single">Subway</li>
+                <li class="option disabled single">Cake</li>
+                <li class="option available single selected">Clever Bread</li>
+                <li class="option available multi">Salad</li>
+                <li class="option disabled multi">Mixed Rice</li>
+                <li class="option available multi selected">Curry</li>
+                <li class="option available single">Briyani</li>
+                <li class="option available single">Pasta</li>
+                <li class="option available single">Bah Kuh Tah</li>
             </ul>
             <ul class="group-wrapper">
-                <li class="group-title">Drink</li>
+                <li class="group-title"><b>Drink</b></li>
                 <li class="option">Tea</li>
                 <li class="option">Coffee</li>
                 <li class="option">Coke</li>
@@ -33,5 +43,11 @@
         </div>
     </div>
 </div>
+<div style="height:500px;"></div>
+<div style="margin:20px;"><button id="b">rotate</button></div>
+<div id="triangle">
+
+</div>
 </body>
+<script src="selectView.js"></script>
 </html>
