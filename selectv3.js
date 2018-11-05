@@ -29,6 +29,10 @@ var J = {
 var style = document.createElement('style');
 style.type = 'text/css';
 style.innerHTML = `
+body{
+    margin-left: 20px;
+}
+
 *{
     font-family: "Source Sans Pro", "Segoe UI", "Open Sans", Calibri, sans-serif;
 }
@@ -43,6 +47,9 @@ style.innerHTML = `
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     padding: 5px 24px 5px 10px;
+    box-sizing: border-box;
+    line-height: 22px;
+    color: #707478;
 }
 
 .select-box:hover{
@@ -77,10 +84,15 @@ style.innerHTML = `
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  fill='rgba(0, 0, 0, 0.8)' stroke='none'><path d='M0,0 6,6 L12,0 L0,0 Z'></path></svg>") no-repeat;
 }
 
-.select-box .select-box-text{
-    color: #707478;
+.select-box .selected-number{
+    padding-right: 5px;
     font-size: 15px;
-    line-height: 22px;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.select-box .select-box-text{ 
+    padding-left: 5px;
+    font-size: 13px;
 }
 
 .select-box:hover .select-box-text{
@@ -378,11 +390,20 @@ function createSelect(id,source){
     var selectBox = document.createElement('div');
     var selectBoxText = document.createElement('span');
     var placeHolder = document.createTextNode(source.placeHolder);
+
+
     //Set select box class and append select box text
     selectBoxText.classList.add('select-box-text');
     selectBoxText.appendChild(placeHolder);
     selectBox.classList.add('collapsed');
     selectBox.classList.add('select-box');
+    if(source.multi){    
+        var selectedNumber = document.createElement('span');
+        var selectedNumberText = document.createTextNode('0');
+        selectedNumber.classList.add('selected-number');
+        selectedNumber.appendChild(selectedNumberText);
+        selectBox.appendChild(selectedNumber);
+    }
     selectBox.appendChild(selectBoxText);
 
     //Create dropdown box
