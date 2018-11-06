@@ -2,12 +2,39 @@
 var J = {
     multi: true,
     searchable: true,
-    placeHolder:'Select an option',
+    placeHolder:'Select options',
     data: [
         {
         title:'Western',
         options:[
             {display:'Cake', value:'1', selected: true,disabled: false},
+            {display:'Bread', value:'2', selected: false, disabled: true},
+            {display:'Salad', value:'3', selected: false, disabled: false},
+            {display:'Chicken', value:'4', selected: false, disabled: false},
+            {display:'Beans', value:'5', selected: true, disabled: false},
+            {display:'Pasta', value:'6', selected: false, disabled: false},
+            {display:'Steak', value:'7', selected: false,disabled: false}
+        ]},
+        {
+        title:'Eastern',
+        options:[
+            {display:'Rice', value:'8', selected: false, disabled: false},
+            {display:'Vege', value:'9', selected: false, disabled: false},
+            {display:'Porridge', value:'10', selected: false, disabled: false},
+            {display:'Juice', value:'11', selected: false, disabled: false}
+        ]}
+    ]
+};
+
+var J1 = {
+    multi: false,
+    searchable: true,
+    placeHolder:'Select an option',
+    data: [
+        {
+        title:'Western',
+        options:[
+            {display:'Cake', value:'1', selected: false,disabled: false},
             {display:'Bread', value:'2', selected: false, disabled: true},
             {display:'Salad', value:'3', selected: false, disabled: false},
             {display:'Chicken', value:'4', selected: false, disabled: false},
@@ -106,9 +133,12 @@ body{
     width: 100%;   
     box-sizing: border-box;
 
-    visibility: hidden;
+    
     max-height: 0px;
     overflow: hidden;
+
+    background-color: white;
+    z-index:1;
 }
 
 .dropdown-box.show{
@@ -116,7 +146,7 @@ body{
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     visibility: visible;
-    transition: max-height 0.2s linear;
+    transition: max-height 0.4s linear;
 }
 
 .dropdown-box .dropdown-search-box{
@@ -564,7 +594,9 @@ function createSelect(id,source){
         dropdownListBox.appendChild(groupWrapper);
     }
 
-    selectedNumber.innerHTML = _selectedValues.length;
+    if(source.multi){
+        selectedNumber.innerHTML = _selectedValues.length;
+    }
 
     dropdownListBox.addEventListener('click',function(event){
         if(event.target.classList.contains('option')){
@@ -751,3 +783,4 @@ function createSelect(id,source){
 
 
 createSelect('gaofan',J);
+createSelect('gaofan1',J1);
