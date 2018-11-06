@@ -81,7 +81,7 @@ body{
 }
 
 .collapsed.select-box:hover:after{
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  fill='rgba(0, 0, 0, 0.8)' stroke='none'><path d='M0,0 6,6 L12,0 L0,0 Z'></path></svg>") no-repeat;
+    border-top-color: rgba(0, 0, 0, 0.8);
 }
 
 .select-box .selected-number{
@@ -229,6 +229,7 @@ body{
     cursor: pointer;
     color: #707478;
     line-height: normal;
+    outline: none;
 }
 
 .dropdown-box .dropdown-list-box .all:hover{
@@ -520,37 +521,83 @@ function createSelect(id,source){
         }
 
         _groups.push(tempGroup);
+
+        if(source.multi){
+            (function(optionElements,group){
+                groupSelectAllBtn.addEventListener('click',function(event){
+                    optionElements.forEach(function(item){
+                        item.classList.add('selected');
+                        var index = (Number)(item.getAttribute('value').split('_')[1]);
+                        var itemValue = group.options[index];
+                        if(_selectedValues.indexOf(itemValue.value) == -1 && !itemValue.disabled){
+                            itemValue.selected = true;
+                            _selectedOptions.push(item);
+                            _selectedValues.push(itemValue.value);
+                            selectedNumber.innerText = _selectedValues.length;
+                        }                     
+                    });
+                    console.log(_selectedOptions);
+                    console.log(_selectedValues);
+                    event.stopPropagation();
+                });
+                groupSelectNoneBtn.addEventListener('click',function(){
+                    optionElements.forEach(function(item){
+                        item.classList.remove('selected');
+                        var index = item.getAttribute('value').split('_')[1];
+                        var itemValue = group.options[index];
+                        var itemIndex = _selectedValues.indexOf(itemValue.value);
+                        if( itemIndex != -1){
+                            itemValue.selected = false;
+                            _selectedOptions.splice(itemIndex,1);
+                            _selectedValues.splice(itemIndex,1);
+                            selectedNumberText = _selectedValues.length;
+                            selectedNumber.innerText = _selectedValues.length;
+                        }
+                    });
+                    console.log(_selectedOptions);
+                    console.log(_selectedValues);
+                    event.stopPropagation();
+                });
+            })(tempGroup.options,group);
+        }
+
         dropdownListBox.appendChild(groupWrapper);
     }
 
-    dropdownListBox.addEventListener('click',function(event){
-        var Indexes = event.target.getAttribute('value').split('_');
-        var groupIndex = (Number)(Indexes[0]);
-        var optionIndex = (Number)(Indexes[1]);
-        var opt = source.data[groupIndex].options[optionIndex];
+    selectedNumber.innerHTML = _selectedValues.length;
 
-        if(!opt.disabled){       
-            if(source.multi){
-                if(opt.selected){
-                    opt.selected = false;
-                    event.target.classList.remove('selected');
-                    _selectedOptions.splice(_selectedOptions.indexOf(event.target),1);
-                    _selectedValues.splice(_selectedValues.indexOf(opt.value),1);
-                }             
+    dropdownListBox.addEventListener('click',function(event){
+        if(event.target.classList.contains('option')){
+            var Indexes = event.target.getAttribute('value').split('_');
+            var groupIndex = (Number)(Indexes[0]);
+            var optionIndex = (Number)(Indexes[1]);
+            var opt = source.data[groupIndex].options[optionIndex];
+    
+            if(!opt.disabled){       
+                if(source.multi){
+                    if(opt.selected){
+                        opt.selected = false;
+                        event.target.classList.remove('selected');
+                        _selectedOptions.splice(_selectedOptions.indexOf(event.target),1);
+                        _selectedValues.splice(_selectedValues.indexOf(opt.value),1);
+                    }             
+                    else{
+                        opt.selected = true;
+                        event.target.classList.add('selected');
+                        _selectedOptions.push(event.target);
+                        _selectedValues.push(opt.value);
+                    }  
+
+                    selectedNumber.innerText = _selectedValues.length;
+                    console.log(_selectedOptions);
+                    console.log(_selectedValues);
+                }
                 else{
-                    opt.selected = true;
-                    event.target.classList.add('selected');
-                    _selectedOptions.push(event.target);
-                    _selectedValues.push(opt.value);
-                }  
-                console.log(_selectedOptions);
-                console.log(_selectedValues);
-            }
-            else{
-                _selectedOption.classList.remove('selected');
-                _selectedOption = event.target;
-                _selectedOption.classList.add('selected');
-                console.log(opt.value);
+                    _selectedOption.classList.remove('selected');
+                    _selectedOption = event.target;
+                    _selectedOption.classList.add('selected');
+                    console.log(opt.value);
+                }
             }
         }
 
@@ -576,6 +623,38 @@ function createSelect(id,source){
         var dropBack = document.body.addEventListener('click', closeDropdown);
     });  
 
+    if(source.multi){
+        dropdownSelectAllBtn.addEventListener('click',function(event){
+            _selectedOptions = [];
+            _selectedValues = [];
+            _groups.forEach(function(groupItem,groupIndex){
+                groupItem.options.forEach(function(optionItem,optionIndex){               
+                    optionItem.classList.add('selected');
+                    _selectedOptions.push(optionItem);
+                    _selectedValues.push(source.data[groupIndex].options[optionIndex].value);
+                    source.data[groupIndex].options[optionIndex].selected = true;
+                    selectedNumber.innerText = _selectedValues.length;
+                });
+            });
+            console.log(_selectedOptions);
+            console.log(_selectedValues);
+            event.stopPropagation();   
+        });
+
+        dropdownSelectNoneBtn.addEventListener('click',function(){
+            _selectedOptions = [];
+            _selectedValues = [];
+            _groups.forEach(function(groupItem,groupIndex){
+                groupItem.options.forEach(function(optionItem,optionIndex){               
+                    optionItem.classList.remove('selected');
+                    source.data[groupIndex].options[optionIndex].selected = false;
+                    selectedNumber.innerText = _selectedValues.length;
+                });
+            });
+            console.log(_selectedOptions);
+            console.log(_selectedValues);
+        });
+    }
     
     if(source.searchable){
         var dropdownSearchBox = document.createElement('div');

@@ -213,6 +213,7 @@ body{
     cursor: pointer;
     color: #707478;
     line-height: normal;
+    outline: none;
 }
 
 .dropdown-box .dropdown-list-box .all:hover{
