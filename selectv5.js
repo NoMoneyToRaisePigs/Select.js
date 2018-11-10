@@ -1,4 +1,4 @@
-
+//this verson is that I am trying to use dictionary [object[index]= something], instead of array.
 var J = {
     multi: true,
     searchable: true,
@@ -66,7 +66,7 @@ function initSelect(id,source){
 
     var _dataSource
     var _optionsCount = 0;
-    var _dropdownGroups = [];
+    var _dropdownGroups = {};
     var _selectedOption = [];
     var _selectedOptions = [];
     var _searchingResult = [];
@@ -166,18 +166,22 @@ function initSelect(id,source){
         for(var i=0; i<dataSource.data.length; i++){
             var groupIndex = i;
             var groupItem = dataSource.data[i];
-
             var groupWrapperUl = document.createElement('ul');
             groupWrapperUl.classList.add("group-wrapper");
             var groupTitleLi = createGroupTitle(dataSource, groupIndex);
+
+            _dropdownGroups[i] = {group:groupWrapperUl, title: groupTitleLi, options: {}};
+
             var groupOptionsLi = createGroupOptions(groupItem, groupIndex, dataSource.multi);
             groupWrapperUl.append(groupTitleLi);
+        
             groupOptionsLi.forEach(function(groupOptionItem){
                 groupWrapperUl.append(groupOptionItem);
             });
 
             _optionsCount = _optionsCount + groupOptionsLi.length;
-            _dropdownGroups.push({group: groupTitleLi, options: groupOptionsLi}); //setting GV
+            // _dropdownGroups.push({group: groupTitleLi, options: groupOptionsLi}); //setting GV
+            // _dropd
             dropdownGroupsUl.push(groupWrapperUl);
         }
 
@@ -252,6 +256,8 @@ function initSelect(id,source){
                     optionLi.classList.add('selected');
                     _selectedOptions.push(optionItem.value);
                 }
+
+                _dropdownGroups[groupIndex].options[optionIndex] = optionLi;
 
                 groupOptionsLi.push(optionLi);
             }
@@ -449,7 +455,7 @@ function initSelect(id,source){
 
         function selectBtnAction(dataSource, groups, btnGroundIndex, isAdd){
             if(btnGroundIndex != undefined){
-                groups[btnGroundIndex].options.forEach(function(optionItem,optionIndex){
+                dataSource.data[btnGroundIndex].options.forEach(function(optionItem,optionIndex){
                     if(isAdd){
                         tryAddValue(dataSource.data[btnGroundIndex].options[optionIndex]);
                         optionItem.classList.add('selected');
@@ -557,3 +563,4 @@ function initSelect(id,source){
 
 initSelect('gaofan',J);
 initSelect('gaofan1',J1);
+
