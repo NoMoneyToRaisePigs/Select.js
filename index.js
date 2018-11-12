@@ -60,3 +60,12 @@ initSelect('select3',J);
 initSelect('select4',J1);
 initSelect('select5',J);
 initSelect('select6',J1);
+
+
+function expand(event){
+    var x = 0;
+    var code = event.target.nextElementSibling;
+    code.style.display = 'block';
+    code.style.right = '480px';
+    event.target.classList.add('show');
+}
