@@ -87,20 +87,29 @@ function initSelect(id,source){
 
     var SelectBox = createSelectBox(_dataSource);
     var DropdownBox = createDropdownBox();
-        var DropdownSearchBox = createDropdownSearchBox();
-        var DropdownNoneMatchingBox = createDropdownNoneMatchingBox();
+        var DropdownSearchBox;
+        var DropdownNoneMatchingBox;
+        if(_dataSource.searchable){
+            DropdownSearchBox = createDropdownSearchBox();
+            DropdownNoneMatchingBox = createDropdownNoneMatchingBox();
+        }
         var DropdownListBox = createDropdownListBox();
-            var DropdownSelectBtnWrapper = createDropdownSelectBtnWrapper();
+            var DropdownSelectBtnWrapper;
+            if(_dataSource.multi)
+                DropdownSelectBtnWrapper = createDropdownSelectBtnWrapper();
             var DropdownGroups = createDropdownGroups(_dataSource);
 
+    if(_dataSource.multi)  
+        DropdownListBox.appendChild(DropdownSelectBtnWrapper);
 
-    DropdownListBox.appendChild(DropdownSelectBtnWrapper);
     DropdownGroups.forEach(function(ulElement){
         DropdownListBox.appendChild(ulElement);
     });
 
-    DropdownBox.appendChild(DropdownSearchBox);
-    DropdownBox.appendChild(DropdownNoneMatchingBox);
+    if(_dataSource.searchable){
+        DropdownBox.appendChild(DropdownSearchBox);
+        DropdownBox.appendChild(DropdownNoneMatchingBox);
+    }
     DropdownBox.appendChild(DropdownListBox);
 
     SetEventsForSelectBox(SelectBox,DropdownBox);
@@ -178,9 +187,9 @@ function initSelect(id,source){
             _dropdownGroups.push({groupIndex: groupIndex, group: groupTitleLi, options: []}); 
 
             var groupOptionsLi = createGroupOptions(groupItem, groupIndex, dataSource.multi);
-            groupWrapperUl.append(groupTitleLi);
+            groupWrapperUl.appendChild(groupTitleLi);
             groupOptionsLi.forEach(function(groupOptionItem){
-                groupWrapperUl.append(groupOptionItem);
+                groupWrapperUl.appendChild(groupOptionItem);
             });
 
             _optionsCount = _optionsCount + groupOptionsLi.length;
@@ -198,11 +207,18 @@ function initSelect(id,source){
                 var groupSelectAllBtnText = document.createTextNode('all');
                 var groupSelectNoneBtnText = document.createTextNode('none');
     
-                groupSelectAllBtn.setAttribute('name','group_'+groupIndex+'_all_btn');
-                groupSelectNoneBtn.setAttribute('name','group_'+groupIndex+'_none_btn');
-                groupSelectAllBtn.classList.add('group-select-btn','btn','all');
-                groupSelectNoneBtn.classList.add('group-select-btn','btn','none');
-    
+                groupSelectAllBtn.setAttribute('data-name','group_'+groupIndex+'_all_btn');
+                groupSelectNoneBtn.setAttribute('data-name','group_'+groupIndex+'_none_btn');
+                //this change is for IE browser, seems it doesn't work with multi parametes.
+                //groupSelectAllBtn.classList.add('group-select-btn','btn','all');
+                groupSelectAllBtn.classList.add('group-select-btn');
+                groupSelectAllBtn.classList.add('btn');
+                groupSelectAllBtn.classList.add('all');
+                //groupSelectNoneBtn.classList.add('group-select-btn','btn','none');
+                groupSelectNoneBtn.classList.add('group-select-btn');
+                groupSelectNoneBtn.classList.add('btn');
+                groupSelectNoneBtn.classList.add('none');
+                
                 groupSelectAllBtn.appendChild(groupSelectAllBtnText);
                 groupSelectNoneBtn.appendChild(groupSelectNoneBtnText);
                 groupSelectBtnWrapper.appendChild(groupSelectAllBtn);
@@ -214,14 +230,14 @@ function initSelect(id,source){
             var groupTitleLi = document.createElement('li');
             var groupTitleB = document.createElement('b');
             var groupTitleText = document.createTextNode(dataSource.data[groundIndex].title);
-            groupTitleLi.setAttribute('value',groupIndex+'_*');
+            groupTitleLi.setAttribute('data-value',groupIndex+'_*');
             
             groupTitleLi.classList.add('group-title');
             groupTitleB.appendChild(groupTitleText);
             groupTitleLi.appendChild(groupTitleB);
             
             if(dataSource.multi){
-                groupTitleLi.append(createGroupSelectBtn());
+                groupTitleLi.appendChild(createGroupSelectBtn());
             }
 
             return groupTitleLi;
@@ -236,7 +252,7 @@ function initSelect(id,source){
     
                 var optionLi = document.createElement('li');
                 var optionLiText = document.createTextNode(optionItem.display);
-                optionLi.setAttribute('value', groupIndex + '_' + optionIndex);
+                optionLi.setAttribute('data-value', groupIndex + '_' + optionIndex);
                 optionLi.classList.add('option'); 
                 optionLi.appendChild(optionLiText);
     
@@ -278,8 +294,13 @@ function initSelect(id,source){
         var dropdownSelectNoneBtnText = document.createTextNode('select none');
 
         dropdownSelectBtnWrapper.classList.add('dropdown-select-btn-wrapper');
-        dropdownSelectAllBtn.classList.add('dropdown-select-btn','btn','all');
-        dropdownSelectNoneBtn.classList.add('dropdown-select-btn','btn','none');
+        dropdownSelectAllBtn.classList.add('dropdown-select-btn');
+        dropdownSelectAllBtn.classList.add('btn');
+        dropdownSelectAllBtn.classList.add('all');
+
+        dropdownSelectNoneBtn.classList.add('dropdown-select-btn');
+        dropdownSelectNoneBtn.classList.add('btn');
+        dropdownSelectNoneBtn.classList.add('none');
 
         dropdownSelectAllBtn.appendChild(dropdownSelectAllBtnText);
         dropdownSelectNoneBtn.appendChild(dropdownSelectNoneBtnText);
@@ -365,7 +386,7 @@ function initSelect(id,source){
             var targetClassList = event.target.classList;
                       
             if(targetClassList.contains('option') && !targetClassList.contains('disabled')){
-                var targetValueAttribute = event.target.getAttribute('value').split('_');
+                var targetValueAttribute = event.target.getAttribute('data-value').split('_');
                 var targetGroupIndex = (Number)(targetValueAttribute[0]);
                 var targetOptionIndex = (Number)(targetValueAttribute[1]);
                 var optData = dataSource.data[targetGroupIndex].options[targetOptionIndex];
@@ -410,7 +431,7 @@ function initSelect(id,source){
                             }
                         }
                         else if(targetClassList.contains('group-select-btn')){
-                            var btnGroupIndex = (Number)(event.target.getAttribute('name').split('_')[1]);
+                            var btnGroupIndex = (Number)(event.target.getAttribute('data-name').split('_')[1]);
                             // _dropdownGroups[btnGroupIndex].options.forEach(function(optionItem,optionIndex){
                             //     tryAddValue(dataSource.data[btnGroupIndex].options[optionIndex]);
                             //     optionItem.classList.add('selected');
@@ -441,7 +462,7 @@ function initSelect(id,source){
                             }
                         }
                         else if(targetClassList.contains('group-select-btn')){
-                             var btnGroupIndex = (Number)(event.target.getAttribute('name').split('_')[1]);
+                             var btnGroupIndex = (Number)(event.target.getAttribute('data-name').split('_')[1]);
                             // _dropdownGroups[btnGroupIndex].options.forEach(function(optionItem,optionIndex){
                             //     tryRemoveValue(dataSource.data[btnGroupIndex].options[optionIndex]);
                             //     optionItem.classList.remove('selected');

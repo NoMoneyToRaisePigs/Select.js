@@ -173,10 +173,10 @@ function initSelect(id,source){
             _dropdownGroups[i] = {group:groupWrapperUl, title: groupTitleLi, options: {}};
 
             var groupOptionsLi = createGroupOptions(groupItem, groupIndex, dataSource.multi);
-            groupWrapperUl.append(groupTitleLi);
+            groupWrapperUl.appendChild(groupTitleLi);
         
             groupOptionsLi.forEach(function(groupOptionItem){
-                groupWrapperUl.append(groupOptionItem);
+                groupWrapperUl.appendChild(groupOptionItem);
             });
 
             _optionsCount = _optionsCount + groupOptionsLi.length;
@@ -219,7 +219,7 @@ function initSelect(id,source){
             groupTitleLi.appendChild(groupTitleB);
             
             if(dataSource.multi){
-                groupTitleLi.append(createGroupSelectBtn());
+                groupTitleLi.appendChild(createGroupSelectBtn());
             }
 
             return groupTitleLi;

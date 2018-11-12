@@ -221,7 +221,7 @@ function initSelect(id,source){
             groupTitleLi.appendChild(groupTitleB);
             
             if(dataSource.multi){
-                groupTitleLi.append(createGroupSelectBtn());
+                groupTitleLi.appendChild(createGroupSelectBtn());
             }
 
             return groupTitleLi;
