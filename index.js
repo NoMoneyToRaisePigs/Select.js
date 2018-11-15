@@ -66,6 +66,7 @@ function expand(event){
     var x = 0;
     var code = event.target.nextElementSibling;
     code.style.display = 'block';
-    code.style.right = '480px';
+    //code.style.left = '480px'
+    // code.style.right = '300px';
     event.target.classList.add('show');
 }
