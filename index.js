@@ -53,20 +53,57 @@ var J1 = {
 };
 
 
-
-initSelect('select1',J);
-initSelect('select2',J1);
-initSelect('select3',J);
-initSelect('select4',J1);
-initSelect('select5',J);
-initSelect('select6',J1);
+initSelect('select_select',J);
+initSelect('select_1',J);
+initSelect('select_2',J1);
+initSelect('select_3',J);
+initSelect('select_4',J1);
+initSelect('select_5',J);
+initSelect('select_6',J1);
+// initSelect('select_5',J);
+// initSelect('select_6',J1);
 
 
 function expand(event){
-    var x = 0;
-    var code = event.target.nextElementSibling;
-    code.style.display = 'block';
-    //code.style.left = '480px'
-    // code.style.right = '300px';
-    event.target.classList.add('show');
+    var snippetLegth = 430;
+    var btn = event.target;
+    var oppBtn = GetOppBtn(btn);
+    var snippet = btn.nextElementSibling;
+    var distance = GetDistanceBetweenBtn(btn, oppBtn);
+    btn.innerText = btn.classList.contains('show')? 'Show the source' : 'Hide the source';
+    btn.classList.toggle('show');
+    snippet.classList.toggle('show');
+
+    if(distance < snippetLegth * 2){
+        oppBtn.innerText = oppBtn.classList.contains('show')? 'Show the source' : 'Hide the source';
+        oppBtn.classList.remove('show');
+        oppBtn.nextElementSibling.classList.remove('show');
+    }
+
+    function GetOppBtn(btn){
+        var btnId = btn.getAttribute('id');
+
+        var oppBtnId;
+        if(btnId.split('_')[3] == 'left')
+            oppBtnId = btnId.replace('left','right');
+        else 
+            oppBtnId = btnId.replace('right','left');
+
+        var oppositeBtn = document.getElementById(oppBtnId);
+        return oppositeBtn;
+    }
+
+    function GetDistanceBetweenBtn(btn, oppBtn){
+        var btnLength = 120;
+        var btnRect = btn.getBoundingClientRect();
+        var oppBtnRect = oppBtn.getBoundingClientRect();
+
+        if(btn.classList.contains('left-btn')){
+            return oppBtnRect.left - btnRect.left + btnLength;
+        }
+        else{
+            return btnRect.left - oppBtnRect.left + btnLength;
+        }
+    }
 }
+

@@ -8,128 +8,221 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <div>
-      <div id="intro-sec">
-
-      </div>
-      <div id="demo-sec">
-        <div class="select-row">
-          <div class="left">
-            <div id="select1" class="component"></div>
-            <div class="component-description">
-                <div class="output">output: []</div>
-                <div class="example-data" onclick="expand(event)">show the data</div>
-                <pre class="sample-data left">
-                    <code class="JavaScript">
-var data = {
-    multi: true,
-    searchable: true,
-    selectPlaceholder:'Select options',
-    data: [{
-        title:'Western',
-        options:[
-            {display:'Cake', value:'1', selected: true,disabled: false},
-            {display:'Bread', value:'2', selected: false, disabled: true},
-            {display:'Salad', value:'3', selected: false, disabled: false},
-            {display:'Chicken', value:'4', selected: false, disabled: false},
-            {display:'Beans', value:'5', selected: true, disabled: false},
-            {display:'Pasta', value:'6', selected: false, disabled: false},
-            {display:'Steak', value:'7', selected: false,disabled: false}
-        ]},
-        {
-        title:'Eastern',
-        options:[
-            {display:'Rice', value:'8', selected: false, disabled: false},
-            {display:'Vege', value:'9', selected: false, disabled: false},
-            {display:'Porridge', value:'10', selected: false, disabled: false},
-            {display:'Juice', value:'11', selected: false, disabled: false}
-        ]}
-    ]};
-                    </code>
-                </pre>
-            </div>
-          </div>
-          <div class="right">
-            <div id="select2" class="component"></div>
-            <div class="component-description">
-                <div class="output">output: []</div>
-                <div class="example-data" onclick="expand(event)">show the data</div>
-                <pre class="sample-data right">
-                    <code class="JavaScript">
-var data = {
-    multi: true,
-    searchable: true,
-    selectPlaceholder:'Select options',
-    data: [{
-        title:'Western',
-        options:[
-            {display:'Cake', value:'1', selected: true,disabled: false},
-            {display:'Bread', value:'2', selected: false, disabled: true},
-            {display:'Salad', value:'3', selected: false, disabled: false},
-            {display:'Chicken', value:'4', selected: false, disabled: false},
-            {display:'Beans', value:'5', selected: true, disabled: false},
-            {display:'Pasta', value:'6', selected: false, disabled: false},
-            {display:'Steak', value:'7', selected: false,disabled: false}
-        ]},
-        {
-        title:'Eastern',
-        options:[
-            {display:'Rice', value:'8', selected: false, disabled: false},
-            {display:'Vege', value:'9', selected: false, disabled: false},
-            {display:'Porridge', value:'10', selected: false, disabled: false},
-            {display:'Juice', value:'11', selected: false, disabled: false}
-        ]}
-    ]};
-                    </code>
-                </pre>
-            </div>
-          </div>
-        </div>     
-   
-
-        <div class="select-row">
+    <div>
+        <div id="intro-sec">
             <div class="left">
-              <div id="select3" class="component"></div>
-              <div class="component-description">
-                  <div class="output">output: []</div>
-                  <div class="example-data" onclick="expand(event)">show the data</div>
-                  <pre class="sample-data left" class="sample-data">
-                      <code class="JavaScript">
-var data = {
-    multi: true,
-    searchable: true,
-    selectPlaceholder:'Select options',
-    data: [{
-        title:'Western',
-        options:[
-            {display:'Cake', value:'1', selected: true,disabled: false},
-            {display:'Bread', value:'2', selected: false, disabled: true},
-            {display:'Salad', value:'3', selected: false, disabled: false},
-            {display:'Chicken', value:'4', selected: false, disabled: false},
-            {display:'Beans', value:'5', selected: true, disabled: false},
-            {display:'Pasta', value:'6', selected: false, disabled: false},
-            {display:'Steak', value:'7', selected: false,disabled: false}
-        ]},
-        {
-        title:'Eastern',
-        options:[
-            {display:'Rice', value:'8', selected: false, disabled: false},
-            {display:'Vege', value:'9', selected: false, disabled: false},
-            {display:'Porridge', value:'10', selected: false, disabled: false},
-            {display:'Juice', value:'11', selected: false, disabled: false}
-        ]}
-    ]};
-                      </code>
-                  </pre>
-              </div>
+                <h2>Select Component</h2>
+                <ul>
+                    <li><h4>simple</h4><p>Initializing a select by just passing the element ID and your input source:</p><pre><code class="JavaScript">var select = new gf_select('id', 'source');</code></pre></li>
+                    <li>
+                        <h4>flexible</h4>
+                        <p>customize your own data.</p>
+                        <table>
+                            <tr><th>Property</th><th>Usage</th></tr>
+                            <tr><td>multi</td><td>true to make it a multi-select</td></tr>
+                            <tr><td>searchable</td><td>do you need to search ?</td></tr>
+                            <tr><td>data</td><td>groups/options for you select</td></tr>
+                        </table>
+                    </li>
+                    <li>
+                        <h4>light</h4>
+                        <p>there is no css, js is only 10K!</p>
+                    </li>
+                    <li>
+                        <h4>written in plain JS and CSS</h4>
+                        <p>no ployfill, no icon, no svg, no picture, pure JS and CSS</p>
+                    </li>
+                    <li>
+                        <h4>cross browsers supported</h4>
+                        <svg  viewBox="0 0 494.046 494.046" width="20px">
+                            <g>
+                            <path style="fill:#2196F3;" d="M238.989,84.018c4.537-3.758,5.169-10.482,1.411-15.019c-2.369-2.86-6.055-4.282-9.731-3.755
+                                C128.216,82.808,53.915,172.514,55.736,276.445c0.04,8.742,0.653,17.472,1.835,26.133c0.635,4.822,4.452,8.604,9.28,9.195
+                                c0.44,0.032,0.882,0.032,1.323,0c4.377,0.001,8.309-2.672,9.92-6.741c16.879-41.817,38.878-81.379,65.493-117.781
+                                C170.986,149.019,203.033,114.342,238.989,84.018z"/>
+                            <path style="fill:#2196F3;" d="M458.424,242.845c-10.537-76.605-62.266-141.247-134.699-168.32
+                                c-3.609-1.307-7.642-0.573-10.56,1.92c-19.651,17.058-38.112,35.441-55.253,55.019c-3.912,4.405-3.512,11.147,0.893,15.059
+                                c1.706,1.515,3.853,2.443,6.126,2.648c38.101,3.456,71.317,37.525,83.904,84.523H183.352c-3.498-0.001-6.774,1.713-8.768,4.587
+                                c-13.675,19.712-26.624,39.467-38.4,58.709l0,0l0,0c-18.33,28.882-33.534,59.633-45.355,91.733
+                                c-1.068,3.267-0.496,6.849,1.536,9.621c0.175,0.261,0.368,0.511,0.576,0.747c36.517,56.005,98.648,90.01,165.504,90.581
+                                c84.889-0.929,160.139-54.835,188.331-134.912c2.074-5.514-0.715-11.665-6.229-13.739c-1.2-0.451-2.472-0.683-3.755-0.683h-88.533
+                                c-4.054,0-7.757,2.298-9.557,5.931c-13.387,33.157-44.575,55.723-80.256,58.069c-41.045,0-76.608-34.603-90.048-85.333h279.467
+                                c5.347,0.054,9.908-3.859,10.667-9.152c1.69-11.093,2.582-22.294,2.667-33.515C461.08,265.122,460.153,253.928,458.424,242.845z"/>
+                            </g>
+                            <path style="fill:#FFC107;" d="M399.522,10.312C364.514-14.947,297.805,6.984,225.4,67.485
+                                c-37.357,31.492-70.651,67.509-99.115,107.221c-27.647,37.852-50.498,78.983-68.032,122.453c-0.143,0.355-0.264,0.718-0.363,1.088
+                                c-34.133,85.547-33.323,157.056,2.133,182.336c11.621,8.075,25.27,12.738,39.403,13.461c2.392,0.019,4.78-0.209,7.125-0.683
+                                c6.405-1.062,12.033-4.853,15.424-10.389c2.997-5.024,1.389-11.524-3.605-14.571c-6.571-4.011-26.56-16.256-7.403-72.811
+                                c11.356-30.589,25.885-59.905,43.349-87.467c11.669-18.944,24.405-38.4,37.824-57.728l15.083-21.205
+                                c20.808-28.986,43.073-56.897,66.709-83.627c16.486-18.848,34.241-36.546,53.141-52.971c40.299-34.539,58.048-33.813,63.787-32
+                                s9.728,8.107,12.096,18.539c1.126,5.252,6.028,8.811,11.371,8.256c5.283-0.492,9.4-4.792,9.664-10.091
+                                C425.549,37.81,411.554,19.122,399.522,10.312z"/>
+                        </svg>
+                        <svg viewBox="0 0 291.678 291.678" width="20px">
+                            <g>
+                                <g>
+                                    <path style="fill:#2394BC;" d="M145.66,4.277c75.561,0,136.556,60.995,136.556,136.556S221.22,277.389,145.66,277.389
+                                        S9.104,216.394,9.104,140.833S70.099,4.277,145.66,4.277z"/>
+                                    <path style="fill:#EC8840;" d="M169.329,284.671c69.188-11.835,121.99-71.009,121.99-143.839l-0.91,1.821
+                                        c1.821-13.656,1.821-26.401-0.91-36.415c-0.91,8.193-1.821,12.745-3.642,14.566c0-0.91,0-9.104-2.731-20.028
+                                        c-0.91-8.193-2.731-16.387-5.462-23.67c0.91,3.641,0.91,6.373,0.91,9.104c-10.924-28.222-36.415-63.726-101.051-62.816
+                                        c0,0,22.759,2.731,32.773,18.207c0,0-10.924-2.731-19.118,1.821c10.014,3.641,19.118,8.193,26.401,12.745h0.91
+                                        c1.821,0.91,3.641,2.731,5.462,3.641c13.656,10.014,26.401,23.67,25.49,40.967c-3.641-5.462-7.283-9.104-12.745-10.014
+                                        c6.373,24.58,6.373,44.608,1.821,60.085c-3.641-10.924-6.373-16.387-9.104-19.118c3.641,32.773-0.91,56.443-15.476,71.919
+                                        c2.731-9.104,3.641-17.297,3.641-23.67c-17.297,25.49-36.415,39.146-58.264,40.056c-8.193,0-16.387-0.91-24.58-3.641
+                                        c-10.924-3.641-20.939-10.014-30.042-19.118c13.656,0.91,27.311-0.91,38.236-7.283l18.207-11.835l0,0
+                                        c2.731-0.91,4.552-0.91,7.283,0c4.552-0.91,6.373-2.731,4.552-7.283c-1.821-2.731-5.462-5.462-10.014-8.193
+                                        c-9.104-4.552-19.118-3.641-29.132,2.731c-10.014,5.462-19.118,5.462-28.222-0.91c-5.462-3.641-11.835-9.104-17.297-16.387
+                                        l-1.821-3.641c-0.91,8.193,0,17.297,3.641,30.042l0,0l0,0c-3.641-11.835-4.552-21.849-3.641-30.042l0,0
+                                        c0-6.373,2.731-10.924,8.193-10.924h-1.821h2.731c6.373,0.91,12.745,1.821,20.939,4.552c0.91-7.283,0-15.476-5.462-23.67l0,0
+                                        c7.283-7.283,13.656-11.835,19.118-14.566c2.731-0.91,3.641-3.641,4.552-6.373l0,0l0,0l0,0c1.821-3.641,0.91-5.462-0.91-7.283
+                                        c-5.462,0-10.014,0-15.476-0.91l0,0c-1.821-0.91-4.552-2.731-8.193-5.462l-8.193-8.193l-2.731-1.821l0,0l0,0l0,0l-0.91-0.91
+                                        l0.91-0.91c0.91-6.373,2.731-11.835,5.462-16.387l0.91-0.91c2.731-4.552,8.193-9.104,15.476-14.566
+                                        c-14.566,1.821-27.311,8.193-39.146,19.118c-9.104-2.731-20.939-1.821-33.684,3.641l-1.821,0.91l0,0l1.821-0.91l0,0
+                                        c-8.193-3.641-13.656-14.566-16.387-32.773C20.939,36.14,16.387,55.258,16.387,81.659l-2.731,4.552l-0.91,0.91l0,0l0,0l0,0
+                                        c-1.821,2.731-3.641,6.373-6.373,10.924c-3.641,7.283-5.462,12.745-5.462,18.207l0,0l0,0v1.821l0,0c0,0.91,0,2.731,0,3.641
+                                        l8.193-6.373c-2.731,8.193-5.462,16.387-6.373,24.58v3.641L0,140.833c0,30.953,10.014,60.085,26.401,83.754l0.91,0.91l0.91,0.91
+                                        c11.835,16.387,27.311,30.042,45.519,40.967c12.745,7.283,26.401,12.745,40.967,16.387l2.731,0.91
+                                        c2.731,0.91,6.373,0.91,9.104,1.821c2.731,0,4.552,0.91,7.283,0.91h2.731h4.552h4.552h3.641h6.373c3.641,0,7.283-0.91,10.924-0.91
+                                        C166.598,284.671,169.329,284.671,169.329,284.671z M261.277,107.149v0.91V107.149L261.277,107.149z"/>
+                                </g>
+                            </g>
+                        </svg>
+                        <svg viewBox="0 0 512 512" width="20px">
+                            <circle style="fill:#2196F3;" cx="256" cy="256" r="256"/>
+                            <polygon style="fill:#FAFAFA;" points="224,224 96,416 288,288 "/>
+                            <polygon style="fill:#F44336;" points="224,224 288,288 416,96 "/>
+                        </svg>
+                        <svg viewBox="0 0 512.023 512.023" width="20px">
+                            <path style="fill:#F44336;" d="M493.248,160.021H256.021c-53.019-0.052-96.042,42.886-96.095,95.905
+                                c-0.016,16.468,4.204,32.663,12.255,47.028L53.568,99.434c86.393-111.815,247.073-132.423,358.888-46.03
+                                C448.365,81.149,476.249,117.946,493.248,160.021z"/>
+                            <path style="fill:#FFC107;" d="M512.021,256.021c-0.118,141.336-114.664,255.882-256,256c-10.704,0.04-21.397-0.673-32-2.133
+                                l115.2-205.867c26.403-45.964,10.664-104.625-35.2-131.2c-14.521-8.407-31.008-12.824-47.787-12.8h237.013
+                                C505.705,190.491,512.083,223.103,512.021,256.021z"/>
+                            <path style="fill:#4CAF50;" d="M339.221,304.021l-115.2,205.867h-0.213C83.62,492.176-15.666,364.172,2.046,223.984
+                                C7.779,178.609,25.57,135.6,53.568,99.434l118.613,203.52l0.64,1.067c26.451,45.95,85.143,61.757,131.093,35.307
+                                C318.592,330.879,330.773,318.698,339.221,304.021z"/>
+                            <path style="fill:#F44336;" d="M339.221,304.021c-26.451,45.95-85.143,61.757-131.093,35.307
+                                c-14.677-8.449-26.858-20.63-35.307-35.307l-0.64-1.067c-25.921-46.251-9.439-104.758,36.812-130.679
+                                c14.366-8.051,30.561-12.271,47.028-12.255h0.213c16.779-0.024,33.266,4.393,47.787,12.8
+                                C349.886,199.396,365.624,258.057,339.221,304.021z"/>
+                            <path style="fill:#2196F3;" d="M339.221,304.021c-26.451,45.95-85.143,61.757-131.093,35.307
+                                c-14.677-8.449-26.858-20.63-35.307-35.307l-0.64-1.067c-25.921-46.251-9.439-104.758,36.812-130.679
+                                c14.366-8.051,30.561-12.271,47.028-12.255h0.213c16.779-0.024,33.266,4.393,47.787,12.8
+                                C349.886,199.396,365.624,258.057,339.221,304.021z"/>
+                            <path style="fill:#FAFAFA;" d="M255.659,362.688c-18.598-0.002-36.868-4.903-52.971-14.208
+                                c-16.237-9.391-29.722-22.883-39.104-39.125c-29.455-51.018-11.975-116.254,39.043-145.709c16.233-9.372,34.65-14.301,53.395-14.291
+                                c58.91-0.046,106.704,47.674,106.749,106.584c0.015,18.752-4.915,37.176-14.291,53.416l0,0
+                                C329.256,342.405,293.893,362.724,255.659,362.688z M256.213,170.688c-30.613-0.163-58.955,16.13-74.219,42.667
+                                c-23.564,40.86-9.543,93.087,31.317,116.651s93.087,9.543,116.651-31.317l0,0c23.564-40.814,9.58-93.003-31.234-116.568
+                                c-12.922-7.46-27.574-11.402-42.494-11.432H256.213z"/>
+                        </svg>
+                        <svg viewBox="0 0 512.005 512.005" width="20px">
+                            <path style="fill:#2196F3;" d="M19.443,227.392h0.288c3.04-24.032,8.64-47.04,16.736-69.088s19.072-42.72,32.896-62.08
+                                s29.792-36.128,47.904-50.336s39.424-25.408,63.936-33.6S232.083,0,260.275,0c44.064,0,83.52,10.048,118.432,30.176
+                                s62.912,49.056,84.096,86.816c19.84,35.648,29.76,77.792,29.76,126.432v53.76H170.739c0.192,21.152,5.28,39.52,15.296,55.072
+                                s23.04,27.232,39.04,35.04s34.08,13.248,54.208,16.288s40.416,3.328,60.928,0.864s40.32-6.912,59.488-13.312
+                                c19.168-6.4,35.712-14.432,49.632-24.16v107.84c-17.536,10.496-39.424,19.264-65.632,26.304c-26.208,7.04-56,10.688-89.376,10.88
+                                c-33.376,0.192-63.488-4.864-90.4-15.168c-36.032-13.92-65.728-37.664-89.088-71.2S79.603,356.576,79.219,319.2
+                                c-0.576-46.144,10.016-85.408,31.744-117.824s52.736-57.984,92.96-76.672c-9.152,11.456-16.576,23.424-22.304,35.904
+                                s-10.112,27.712-13.152,45.632h181.632c1.536-14.688,0.768-28.032-2.304-40.032c-3.04-12-7.52-21.696-13.44-29.024
+                                s-12.64-13.696-20.16-19.008c-7.52-5.344-15.2-9.248-23.04-11.712c-7.808-2.464-14.976-4.448-21.44-5.856s-11.808-2.24-16.032-2.432
+                                l-6.272-0.352c-25.728,0.96-50.496,5.184-74.24,12.736s-45.024,17.504-63.904,29.888s-35.68,25.792-50.336,40.192
+                                S31.059,210.624,19.443,227.392z"/>
+                        </svg>                 
+                    </li>
+                </ul>
             </div>
             <div class="right">
-              <div id="select4" class="component"></div>
-              <div class="component-description">
-                  <div class="output">output: []</div>
-                  <div class="example-data">show the data</div>
-                  <pre class="sample-data right">
-                      <code class="JavaScript">
+                <div class="wrapper"><div><div id="select_select"></div></div></div>
+            </div>
+      </div>
+
+      <div id="demo-sec">
+        <h3>simple options</h3>
+        <div class="select-row">
+        <div class="left">
+            <div id="select_1" class="select-component"></div>
+            <div class="select-component-data">
+                <div class="select-output">output: []</div>
+                <div id="row_1_btn_left" class="data-source-btn left-btn" onclick="expand(event)">show the data</div>
+                <pre class="data-source left-side">
+                        <code class="JavaScript">
+        var data = {
+        multi: true,
+        searchable: true,
+        selectPlaceholder:'Select options',
+        data: [{
+            title:'Western',
+            options:[
+                {display:'Cake', value:'1', selected: true, disabled: false},
+                {display:'Bread', value:'2', selected: false, disabled: true},
+                {display:'Salad', value:'3', selected: false, disabled: false},
+                {display:'Chicken', value:'4', selected: false, disabled: false},
+                {display:'Beans', value:'5', selected: true, disabled: false},
+                {display:'Pasta', value:'6', selected: false, disabled: false},
+                {display:'Steak', value:'7', selected: false, disabled: false}
+            ]},
+            {
+            title:'Eastern',
+            options:[
+                {display:'Rice', value:'8', selected: false, disabled: false},
+                {display:'Vege', value:'9', selected: false, disabled: false},
+                {display:'Porridge', value:'10', selected: false, disabled: false},
+                {display:'Juice', value:'11', selected: false, disabled: false}
+            ]}
+        ]};
+                        </code>
+                </pre>
+            </div>
+        </div>
+        <div class="right">
+            <div id="select_2" class="select-component"></div>
+            <div class="select-component-data">
+                <div class="select-output">output: []</div>
+                <div id="row_1_btn_right" class="data-source-btn right-btn" onclick="expand(event)">show the data</div>
+                <pre class="data-source right-side">
+                        <code class="JavaScript">
+    var data = {
+        multi: true,
+        searchable: true,
+        selectPlaceholder:'Select options',
+        data: [{
+            title:'Western',
+            options:[
+                {display:'Cake', value:'1', selected: true, disabled: false},
+                {display:'Bread', value:'2', selected: false, disabled: true},
+                {display:'Salad', value:'3', selected: false, disabled: false},
+                {display:'Chicken', value:'4', selected: false, disabled: false},
+                {display:'Beans', value:'5', selected: true, disabled: false},
+                {display:'Pasta', value:'6', selected: false, disabled: false},
+                {display:'Steak', value:'7', selected: false, disabled: false}
+            ]},
+            {
+            title:'Eastern',
+            options:[
+                {display:'Rice', value:'8', selected: false, disabled: false},
+                {display:'Vege', value:'9', selected: false, disabled: false},
+                {display:'Porridge', value:'10', selected: false, disabled: false},
+                {display:'Juice', value:'11', selected: false, disabled: false}
+            ]}
+        ]};
+                        </code>
+                </pre>
+            </div>
+        </div>
+        </div>    
+        
+        <h3>grouped options</h3>
+        <div class="select-row">
+            <div class="left">
+            <div id="select_3" class="select-component"></div>
+            <div class="select-component-data">
+                <div class="select-output">output: []</div>
+                <div id="row_2_btn_left" class="data-source-btn left-btn" onclick="expand(event)">show the data</div>
+                <pre class="data-source left-side">
+                    <code class="JavaScript">
 var data = {
     multi: true,
     searchable: true,
@@ -137,13 +230,13 @@ var data = {
     data: [{
         title:'Western',
         options:[
-            {display:'Cake', value:'1', selected: true,disabled: false},
+            {display:'Cake', value:'1', selected: true, disabled: false},
             {display:'Bread', value:'2', selected: false, disabled: true},
             {display:'Salad', value:'3', selected: false, disabled: false},
             {display:'Chicken', value:'4', selected: false, disabled: false},
             {display:'Beans', value:'5', selected: true, disabled: false},
             {display:'Pasta', value:'6', selected: false, disabled: false},
-            {display:'Steak', value:'7', selected: false,disabled: false}
+            {display:'Steak', value:'7', selected: false, disabled: false}
         ]},
         {
         title:'Eastern',
@@ -154,22 +247,56 @@ var data = {
             {display:'Juice', value:'11', selected: false, disabled: false}
         ]}
     ]};
-                      </code>
-                  </pre>
+                    </code>
+                </pre>
+            </div>
+            </div>
+            <div class="right">
+                <div id="select_4" class="select-component"></div>
+                <div class="select-component-data">
+                    <div class="select-output">output: []</div>
+                    <div id="row_2_btn_right" class="data-source-btn right-btn" onclick="expand(event)">show the data</div>
+                    <pre class="data-source right-side">
+                        <code class="JavaScript">
+    var data = {
+        multi: true,
+        searchable: true,
+        selectPlaceholder:'Select options',
+        data: [{
+            title:'Western',
+            options:[
+                {display:'Cake', value:'1', selected: true, disabled: false},
+                {display:'Bread', value:'2', selected: false, disabled: true},
+                {display:'Salad', value:'3', selected: false, disabled: false},
+                {display:'Chicken', value:'4', selected: false, disabled: false},
+                {display:'Beans', value:'5', selected: true, disabled: false},
+                {display:'Pasta', value:'6', selected: false, disabled: false},
+                {display:'Steak', value:'7', selected: false, disabled: false}
+            ]},
+            {
+            title:'Eastern',
+            options:[
+                {display:'Rice', value:'8', selected: false, disabled: false},
+                {display:'Vege', value:'9', selected: false, disabled: false},
+                {display:'Porridge', value:'10', selected: false, disabled: false},
+                {display:'Juice', value:'11', selected: false, disabled: false}
+            ]}
+        ]};
+                        </code>
+                    </pre>
               </div>
             </div>
-          </div>  
+        </div>  
 
-
-
-          <div class="select-row">
-              <div class="left">
-                <div id="select5" class="component"></div>
-                <div class="component-description">
-                    <div class="output">output: []</div>
-                    <div class="example-data" onclick="expand(event)">show the data</div>
-                    <pre class="sample-data left">
-                        <code class="JavaScript">
+        <h3>grouped options</h3>
+        <div class="select-row">
+            <div class="left">
+            <div id="select_5" class="select-component"></div>
+            <div class="select-component-data">
+                <div class="select-output">output: []</div>
+                <div id="row_2_btn_left" class="data-source-btn left-btn" onclick="expand(event)">show the data</div>
+                <pre class="data-source left-side">
+                    <code class="JavaScript">
 var data = {
     multi: true,
     searchable: true,
@@ -177,13 +304,13 @@ var data = {
     data: [{
         title:'Western',
         options:[
-            {display:'Cake', value:'1', selected: true,disabled: false},
+            {display:'Cake', value:'1', selected: true, disabled: false},
             {display:'Bread', value:'2', selected: false, disabled: true},
             {display:'Salad', value:'3', selected: false, disabled: false},
             {display:'Chicken', value:'4', selected: false, disabled: false},
             {display:'Beans', value:'5', selected: true, disabled: false},
             {display:'Pasta', value:'6', selected: false, disabled: false},
-            {display:'Steak', value:'7', selected: false,disabled: false}
+            {display:'Steak', value:'7', selected: false, disabled: false}
         ]},
         {
         title:'Eastern',
@@ -194,55 +321,57 @@ var data = {
             {display:'Juice', value:'11', selected: false, disabled: false}
         ]}
     ]};
-                        </code>
-                    </pre>
-                </div>
-              </div>
-              <div class="right">
-                <div id="select6" class="component"></div>
-                <div class="component-description">
-                    <div class="output">output: []</div>
-                    <div class="example-data" onclick="expand(event)">show the data</div>
-                    <pre class="sample-data right">
+                    </code>
+                </pre>
+            </div>
+            </div>
+            <div class="right">
+                <div id="select_6" class="select-component"></div>
+                <div class="select-component-data">
+                    <div class="select-output">output: []</div>
+                    <div id="row_2_btn_right" class="data-source-btn right-btn" onclick="expand(event)">show the data</div>
+                    <pre class="data-source right-side">
                         <code class="JavaScript">
-var data = {
-    multi: true,
-    searchable: true,
-    selectPlaceholder:'Select options',
-    data: [{
-        title:'Western',
-        options:[
-            {display:'Cake', value:'1', selected: true,disabled: false},
-            {display:'Bread', value:'2', selected: false, disabled: true},
-            {display:'Salad', value:'3', selected: false, disabled: false},
-            {display:'Chicken', value:'4', selected: false, disabled: false},
-            {display:'Beans', value:'5', selected: true, disabled: false},
-            {display:'Pasta', value:'6', selected: false, disabled: false},
-            {display:'Steak', value:'7', selected: false,disabled: false}
-        ]},
-        {
-        title:'Eastern',
-        options:[
-            {display:'Rice', value:'8', selected: false, disabled: false},
-            {display:'Vege', value:'9', selected: false, disabled: false},
-            {display:'Porridge', value:'10', selected: false, disabled: false},
-            {display:'Juice', value:'11', selected: false, disabled: false}
-        ]}
-    ]};
+    var data = {
+        multi: true,
+        searchable: true,
+        selectPlaceholder:'Select options',
+        data: [{
+            title:'Western',
+            options:[
+                {display:'Cake', value:'1', selected: true, disabled: false},
+                {display:'Bread', value:'2', selected: false, disabled: true},
+                {display:'Salad', value:'3', selected: false, disabled: false},
+                {display:'Chicken', value:'4', selected: false, disabled: false},
+                {display:'Beans', value:'5', selected: true, disabled: false},
+                {display:'Pasta', value:'6', selected: false, disabled: false},
+                {display:'Steak', value:'7', selected: false, disabled: false}
+            ]},
+            {
+            title:'Eastern',
+            options:[
+                {display:'Rice', value:'8', selected: false, disabled: false},
+                {display:'Vege', value:'9', selected: false, disabled: false},
+                {display:'Porridge', value:'10', selected: false, disabled: false},
+                {display:'Juice', value:'11', selected: false, disabled: false}
+            ]}
+        ]};
                         </code>
                     </pre>
-                </div>
               </div>
-            </div>  
+            </div>
+        </div>  
+    </div>
 
-      </div>
-      <div id="footer-sec">
+      
 
-      </div>
-  </div>
+    <div id="footer-sec">
+
+    </div>
+</div>
 </body>
 <script src="highlight.pack.js"></script>
-<script src="select.min.js"></script>
+<script src="mainv1.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="index.js"></script>
 </html>
