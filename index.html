@@ -9,24 +9,31 @@
 </head>
 <body>
     <div>
+        <div id="branding-sec">
+            <div>my branding</div>
+        </div>
         <div id="intro-sec">
             <div class="left">
                 <h2>Select Component</h2>
                 <ul>
-                    <li><h4>simple</h4><p>Initializing a select by just passing the element ID and your input source:</p><pre><code class="JavaScript">var select = new gf_select('id', 'source');</code></pre></li>
+                    <li><h4>simple</h4>
+                        <p>Initializing a select by just newing an instance with the <span style="color: #50a14f;">element ID</span> and your <span style="color: #50a14f;">input source</span> :</p>
+                        <pre><code class="JavaScript">var  select  =  new  GF_Select ( 'element id',  'input source' );</code></pre>
+                    </li>
                     <li>
                         <h4>flexible</h4>
-                        <p>customize your own data.</p>
+                        <p>customize your own input source to make the select cater your needs.</p>
                         <table>
                             <tr><th>Property</th><th>Usage</th></tr>
                             <tr><td>multi</td><td>true to make it a multi-select</td></tr>
                             <tr><td>searchable</td><td>do you need to search ?</td></tr>
                             <tr><td>data</td><td>groups/options for you select</td></tr>
                         </table>
+                        <p>check out the examples below.</p>
                     </li>
                     <li>
                         <h4>light</h4>
-                        <p>there is no css, js is only 10K!</p>
+                        <p>there is no css, js size is only <b style="color:#2394BC; font-size: 18px;">10K!!!</b></p>
                     </li>
                     <li>
                         <h4>written in plain JS and CSS</h4>
@@ -139,6 +146,10 @@
             </div>
       </div>
 
+      <div class="star-sec">
+        <div>I need star</div>
+      </div>
+
       <div id="demo-sec">
         <h3>simple options</h3>
         <div class="select-row">
@@ -212,7 +223,8 @@
                 </pre>
             </div>
         </div>
-        </div>    
+        </div>   
+        <br/> <hr/>
         
         <h3>grouped options</h3>
         <div class="select-row">
@@ -287,6 +299,8 @@ var data = {
               </div>
             </div>
         </div>  
+        <br/> <hr/>
+
 
         <h3>grouped options</h3>
         <div class="select-row">

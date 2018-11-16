@@ -59,7 +59,7 @@ function initSelect(id,source,test){
     }
     DropdownBox.appendChild(DropdownListBox);
 
-    SetEventsForSelectBox(SelectBox,DropdownBox);
+    SetEventsForSelectBox(SelectBox,DropdownBox,DropdownListBox);
     if(_dataSource.searchable)
         setEventsForDropdownSearchInput();
     setEventsForDropdownListBox(DropdownListBox, _dataSource);
@@ -282,9 +282,9 @@ function initSelect(id,source,test){
         return dropdownNoneMatchingBox;
     }
 
-    function SetEventsForSelectBox(selectBox, dropdownBox){
+    function SetEventsForSelectBox(selectBox, dropdownBox, dropdownListBox){
         selectBox.onclick = function(event){
-            setDropdownPosition();
+            setDropdownPosition(dropdownBox,dropdownListBox);
 
             selectBox.classList.remove('collapsed');
             selectBox.classList.add('expanded');
@@ -302,15 +302,17 @@ function initSelect(id,source,test){
             }         
         };
 
-        function setDropdownPosition(){
+        function setDropdownPosition(dropdownBox,dropdownListBox){
             dropdownBox.style.top = 'auto';
             dropdownBox.style.bottom = 'auto';
+            dropdownListBox.style.maxHeight = '300px';
     
             var selectBoxRect = selectBox.getBoundingClientRect();
             var viewportHeight = window.innerHeight;
             var offSetTop = selectBoxRect.top;
             var offSetBottom = viewportHeight - selectBoxRect.top - (selectBoxRect.bottom - selectBoxRect.top);
             var marginViewportEdge = 10;
+            var searchBoxHeight = 35;
 
             if(offSetTop > 300 && offSetBottom > 300){
                 dropdownBox.style.top = '100%';
@@ -322,8 +324,14 @@ function initSelect(id,source,test){
                 dropdownBox.style.top = '100%';
             }
             if(offSetTop < 300 & offSetBottom < 300){
-                dropdownBox.style.top = '100%';
-                dropdownListBox.style.maxHeight = (offSetBottom - marginViewportEdge) + 'px';
+                if(offSetTop>offSetBottom){
+                    dropdownBox.style.bottom = '100%';
+                    dropdownListBox.style.maxHeight = (offSetTop - searchBoxHeight - marginViewportEdge) + 'px';
+                }
+                else{
+                    dropdownBox.style.top = '100%';
+                    dropdownListBox.style.maxHeight = (offSetBottom - searchBoxHeight - marginViewportEdge) + 'px';
+                }
             }
         }
     }
