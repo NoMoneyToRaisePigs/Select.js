@@ -15,6 +15,8 @@ body{
 
 #intro-sec ul{
     width: 100%;
+    box-sizing: 10px;
+    padding: 10px;
 }
 
 #intro-sec li{
@@ -78,6 +80,10 @@ body{
     box-sizing: border-box;
 }
 
+#star-sec>.badge svg{
+    width: 25px;
+    height: 20px;
+}
 
 #star-sec>.badge>div{
     /* width: 25px; */
@@ -133,17 +139,55 @@ body{
 }
 
 #star-sec>.git-btn{
-    background-color: rgb(0, 0, 0, 0.05);
+    cursor: pointer;
+    /* background-color: rgb(0, 0, 0, 0.05); */
     color:#84f084;
     display: inline-block;
     border: 1px solid rgb(0, 0, 0, 0.2);
     border-radius: 4px;
     box-sizing: border-box;
-    line-height: 32px;
+    line-height: 25px;
     text-align: top;
-    padding: 4px;
+    padding: 4px 8px;
     margin: 12px auto 0px auto;
-    width: 220px;
+    text-decoration: none;
+}
+
+#star-sec>.git-btn svg{
+    vertical-align: text-bottom;
+}
+
+@media screen and (max-width: 450px){
+    #star-sec{
+        width: 350px;
+        height: 220px;
+    }
+
+    #star-sec>.statement{
+
+        width: 250px;       
+    }
+
+    #star-sec>.badge{
+        left:5px;
+        width: 20px;
+        height: 30px;
+    }
+
+    #star-sec>.badge>div::before{
+        border-bottom: 16px solid transparent;
+        border-left: 10px solid #84f084;
+    }
+    
+    #star-sec>.badge>div::after{
+        border-bottom: 16px solid transparent;
+        border-right: 10px solid #84f084;
+    }
+
+    #star-sec>.badge svg{
+        width: 20px;
+        height: 15px;
+    }
 }
 
 @media screen and (min-width: 700px){
@@ -154,8 +198,8 @@ body{
 
 @media screen and (max-width: 699px) {
     #intro-sec{
-        flex-direction: column;
-        flex-direction: row-reverse;
+        flex-direction: column-reverse;
+        /* flex-direction: row-reverse; */
     }
     #intro-sec .left{
         width: 100%;
